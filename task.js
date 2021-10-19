@@ -22,6 +22,12 @@ let showTasks = ``;
 // For storing the value of a new task
 let newTask;
 
+// For storing the number of the task to remove
+let num;
+
+// For storing the value of the removed task
+let removed;
+
 
 // Display the menu for the user to select an option.
 
@@ -58,6 +64,33 @@ while (userInput !== `CLOSE`){
 
         // Adds the user's entry as a new item at the end of the tasks array
         tasks.push(newTask);
+
+    }
+
+    // Check if the user entered REMOVE
+    if (userInput === `REMOVE`){
+      
+        // Concatenate each Task/item in the tasks array the showTasks string variable. Also, sets/display a number for each task.
+        for(i = 0; i < tasks.length; i++){
+
+            // Adding 1 to i (AKA The index) so the number will start displaying at 1. Also, using \n to create a new line (AKA Line break)
+            showTasks += `${i + 1}: ${tasks[i]}\n`;
+        }
+
+        // Prompt the user to enter a number and stores their response to the num variable. 
+        // Using \n to create a new line(AKA Line break).
+        // Subtracting 1 from the user's entry so that it matches the index of the item that the user wants to remove from the tasks array.
+        // Just like with ParseInt, JavaScript will attempt to convert a string into a number when you try to subtract from it. So ParseInt is not necessary here.
+        num = prompt(`Please enter a number to remove:\n${showTasks}`) - 1;
+        
+        // Removes the tasks /items selected by the user from the tasks array, Also, sets the tasks/item that was removed to the REMOVED variable(NOTE: Splice returns the value that is removed as an items in an array)
+        removed = tasks.splice(num, 1);
+
+        // Alerts user with the task/item that has been removed (NOTE: Using index on the REMOVED variable here because splice returns the value that is removed as an item in an array)
+        alert(`"${removed[0]}"has been removed`);
+
+        // Sets the value the of showTasks string variable back to an empty string
+        showTasks = ``;
 
     }
     
