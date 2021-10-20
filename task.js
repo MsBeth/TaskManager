@@ -1,6 +1,6 @@
 // TASK MANAGER
 
-// Using Template Literal bec it recognozed a line breaks
+// Using Template Literal bec it recognizes a line breaks
 const menu =`TASK MANAGER
 
 What would you like to do (Please enter one of the option below):
@@ -16,7 +16,7 @@ const tasks = [
   `Master JavaScript`
 ];
 
-//For displaying task to the user
+// For displaying tasks to the user
 let showTasks = ``;
 
 // For storing the value of a new task
@@ -59,7 +59,7 @@ while (userInput !== `CLOSE`){
         // Prompts the user to enter a new task and stores their response
         newTask = prompt(`Please enter the new task:`);
 
-        // Continues looping and prompting the user until something is entered (NOTE: If the user does NOT type)
+        // Continues looping and prompting the user until something is entered (NOTE: If the user does NOT type anything and just click  OK, then )
         while (newTask === ``){
             newTask = prompt(`Please enter the new task:`)
         }
@@ -87,9 +87,23 @@ while (userInput !== `CLOSE`){
         // Subtracting 1 from the user's entry so that it matches the index of the item that the user wants to remove from the tasks array.
         // Just like with ParseInt, JavaScript will attempt to convert a string into a number when you try to subtract from it. So ParseInt is not necessary here.
         num = prompt(`Please enter a number to remove:\n${showTasks}`) - 1;
+
+        // Loop that continues looping until the user enters a valid number
+        // Verifiesbthe user enetred a whole (AKA Not a decimal) that is one of the options in the prompt (AKA within the number range from 1 to the lenght of the task array)
+        while (Math.floor(num) !== num || num < 0 || num >= task.length  || !num){
+
+            // Alerts the user that they have NOT entered a valid number
+            alert(`Not a valid entry`);
+
+            //
+            num = prompt(`Please enter a number to remove:\n${showTasks}`)
+
+        } 
         
         // Removes the tasks /items selected by the user from the tasks array, Also, sets the tasks/item that was removed to the REMOVED variable(NOTE: Splice returns the value that is removed as an items in an array)
         removed = tasks.splice(num, 1);
+
+        
 
         // Alerts user with the task/item that has been removed (NOTE: Using index on the REMOVED variable here because splice returns the value that is removed as an item in an array)
         alert(`"${removed[0]}"has been removed`);
